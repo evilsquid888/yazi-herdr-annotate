@@ -1,0 +1,13 @@
+# Add to ~/.config/herdr/config.toml (skip any key you already bind).
+
+[[keys.command]]
+key = "prefix+y"
+type = "plugin_action"
+command = "ray.file-explorer.open"
+description = "open Yazi file explorer"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "annotate.open"
+description = "review Markdown files"

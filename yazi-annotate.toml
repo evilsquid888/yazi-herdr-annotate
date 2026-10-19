@@ -1,0 +1,14 @@
+# yazi-herdr-annotate: Enter on a text file opens it in herdr-annotate
+# (plannotator-tui) for commenting. Press O to pick another opener (e.g. the editor).
+[opener]
+annotate = [
+  { run = '~/.config/yazi/annotate-open.sh %s1', desc = "Annotate (comment)", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+  { url = "*.{md,markdown,mdx,MD,txt,text,TXT,log,rst,org,adoc,csv,tsv}", use = [ "annotate", "edit" ] },
+  { mime = "text/*", use = [ "annotate", "edit" ] },
+  { mime = "application/{json,ndjson,toml,yaml,x-yaml,javascript,xml,x-sh,x-shellscript}", use = [ "annotate", "edit" ] },
+  { mime = "inode/{empty,x-empty}", use = [ "annotate", "edit" ] },
+]

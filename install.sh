@@ -25,6 +25,18 @@ else
   echo "added the annotate opener to $conf"
 fi
 
+keys="$ydir/keymap.toml"
+if [ -f "$keys" ] && grep -q 'plugin toggle-pane' "$keys"; then
+  echo "$keys already has toggle-pane keys; left unchanged"
+else
+  if ! ya pkg list 2>/dev/null | grep -q 'toggle-pane'; then
+    ya pkg add yazi-rs/plugins:toggle-pane
+  fi
+  [ -f "$keys" ] && cp "$keys" "$keys.bak-$(date +%Y%m%d-%H%M%S)"
+  { [ -s "$keys" ] && echo; cat "$here/yazi-keymap.toml"; } >> "$keys"
+  echo "added T column-toggle keys to $keys"
+fi
+
 echo
 echo "Next:"
 echo "  herdr plugin install plannotator/herdr-annotate   # Full variant"

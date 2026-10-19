@@ -25,7 +25,7 @@ it goes to the first agent in the same tab, then the first one in the same works
 - Herdr 0.9.3 or newer
 - [plannotator/herdr-annotate](https://github.com/plannotator/herdr-annotate), the **Full** variant (it ships plannotator-tui)
 - [speardragon/herdr-yazi](https://github.com/speardragon/herdr-yazi) and Yazi 25.x/26.x (uses the `%s1` opener syntax)
-- `jq`
+- `jq`, and `ya` (ships with Yazi) for the column-toggle plugin
 - Linux or macOS
 
 ## Install
@@ -37,7 +37,7 @@ git clone https://github.com/evilsquid888/yazi-herdr-annotate
 cd yazi-herdr-annotate && ./install.sh
 ```
 
-`install.sh` copies `annotate-open.sh` into `~/.config/yazi/` and appends
+`install.sh` copies `annotate-open.sh` into `~/.config/yazi/`, sets up the [column toggles](#column-toggles), and appends
 `yazi-annotate.toml` to `yazi.toml`, backing that file up first. If your `yazi.toml` already
 has an `[opener]` or `[open]` table, the script stops instead of appending, and you merge the
 two tables by hand.
@@ -53,6 +53,22 @@ Then add the key bindings from [`herdr-keys.toml`](herdr-keys.toml) to
 
 Everything else (images, PDFs, archives) keeps Yazi's normal opener. Press `O` on a file to
 pick a different opener, such as your editor.
+
+## Column toggles
+
+`install.sh` also installs Yazi's
+[toggle-pane](https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi) plugin and adds
+these keys from [`yazi-keymap.toml`](yazi-keymap.toml). Press `Shift+T` and a menu of the
+choices pops up.
+
+| Keys | Does |
+|---|---|
+| `T` `p` | Show or hide the parent column (left) |
+| `T` `c` | Show or hide the current column (middle) |
+| `T` `r` | Show or hide the preview column (right) |
+| `T` `T` | Preview fills the whole pane, then back to normal |
+
+Press `~` or `F1` in Yazi to see every key binding.
 
 ## Gotchas this handles
 
